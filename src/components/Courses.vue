@@ -1,67 +1,16 @@
 <script setup>
 import {ref} from 'vue'
-const courses= ref([
-    {
-        name:"Computer Science",
-        school:" SCI",
-        description:" Best course for computer enthusiasts",
-        intake:"July 2025"
-    },
-    {
-    name:"Medicine",
-        school:"School of Health Science",
-        description:"Best course for learning about health",
-        intake:"Sep 2025"
-    },
-    {
-        name:"BBIT",
-        school:"SCI",
-        description:" BEST for IT course",
-        intake:"May 2025"
-    },
-    {
-        name:"BIT",
-        school:"SCI",
-        description:"Best for ICT",
-        intake:"January 2025"
-    },
-    {
-name:"Education",
-        school:"BED",
-        description:"Best for teaching courses",
-        intanke:"Sep 2025"
-    },
-   {
-name:"Journalism",
-        school:"BED",
-        description:"Best for media courses",
-        intake:"Sep 2025"
-    },  
-     {
-name:"Clinical medicine",
-        school:"BED",
-        description:"Best for health courses",
-        intake:"Sep 2025"
-    },
-  {
-name:"Engineering",
-        school:"BED",
-        description:"Best for engineering courses",
-        intake:"Sep 2025"
-    },   
-   {
-name:"pyscologogy",
-        school:"BED",
-        description:"Best for health courses",
-        intake:"Sep 2025"
-    },  
- {
-name:"Animal Health",
-        school:"BED",
-        description:"Best for vetinary courses",
-        intake:"Sep 2025"
-    },
-])
+import {useCoursesStore} from '../stores/courses'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
+const coursesStore = useCoursesStore() //making the stores accesible
+const courses = coursesStore.courses 
+
+function apply(courseId){
+  coursesStore.updateSelectedCourse(courseId)
+  router.push('/apply')
+}
 </script>
 
 <template>
@@ -70,8 +19,8 @@ name:"Animal Health",
     <v-row>
 
     
-        <v-col md="6" v-for="course in courses">
-             <v-card color = "purple">
+        <v-col md="4" v-for="course in courses">
+             <v-card color = "blue">
         <v-card-item>
           <v-card-title>{{course.name}}</v-card-title>
 
@@ -79,14 +28,18 @@ name:"Animal Health",
         </v-card-item>
 
         <v-card-text>
-        {{course.description}}
+         {{course.description}}
         </v-card-text>
-        <v-card-text>
-            {{ course.intake }}
+
+         <v-card-text>
+         {{course.intake}}
         </v-card-text>
+      <v-card-actions> 
+      <v-button color = "primary" @click="apply(course.id)">Apply</v-button> 
+    </v-card-actions>
       </v-card>
+      
 
         </v-col>
-        </v-row>
-
-</template>
+</v-row>
+</template>\

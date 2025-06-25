@@ -1,35 +1,8 @@
 <script setup>
 import {ref} from 'vue'
-const events=ref([
-    {
-    name:"Community Outreach at Northern Kenya",
-    image:" ../../public/images/eventsimages/nico-smit-NFoerQuvzrs-unsplash.jpg",
-    date:"July 7th 2025",
-    location:"Northern Kenya Academy",
-    category:"Community Outreach"
-    },
-  {
-    name:"Sports",
-    image:"../../public/images/eventsimages/benjamin-hershey-qegSxvH9U9Y-unsplash.jpg",
-    date:"January 21st 2025",
-    location:"Ulinzi Sports Cente Nairobi",
-    category:"Health Exercises"
-    },
-    {
-    name:"Cooking",
-    image:"../../public/images/eventsimages/nadine-primeau--bLkT8wGV0I-unsplash.jpg",
-    date:"June 22nd 2025",
-    location:"Nairobi Primary School",
-    category:"Hospitality"
-    },
-    {
-    name:"Hackathon",
-    image:"../../public/images/eventsimages/safar-safarov-koOdUvfGr4c-unsplash.jpg",
-    date:"November 24th 2025",
-    location:"Meru University",
-    category:"Coding"
-    }  
-])
+import { useeventsStore } from '../stores/events'
+const eventsStore=useeventsStore()
+const events=eventsStore.events
 </script>
 <template>
     <v-container>
@@ -68,4 +41,4 @@ const events=ref([
   </v-col>
  </v-row>
 </v-container>
-    </template>
+</template>
